@@ -1,0 +1,8 @@
+name: TeamChat
+version: 6.0.1
+author: Littlq
+
+main: me.Littlq.main.Main
+
+commands:
+  tc:
