@@ -81,7 +81,7 @@ public class cmd_tc extends Command {
 										p.sendMessage(Main.configpref + server);
 										continue;
 									}
-                                    String user = Main.userservermsg.replace("%PLAYER%", all.getName());
+                                    String user = Main.userserverhiddenmsg.replace("%PLAYER%", all.getName());
 									p.sendMessage(Main.configpref + user);
 									continue;
 								}
