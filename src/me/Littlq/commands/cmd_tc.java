@@ -70,7 +70,7 @@ public class cmd_tc extends Command {
 					} else if (args[0].equalsIgnoreCase("list")) {
 						if (Main.login.contains(p)) {
 							p.sendMessage("");
-							p.sendMessage(Main.configpref + "§8----------=" + Main.configpref + "§8=----------");
+							p.sendMessage(Main.configpref + "----------=" + Main.configpref + "=----------");
 							for (ProxiedPlayer all : BungeeCord.getInstance().getPlayers()) {
 								if (Main.login.contains(all)) {
 									if (!Main.hidden.contains(all)) {
@@ -81,12 +81,12 @@ public class cmd_tc extends Command {
 										p.sendMessage(Main.configpref + server);
 										continue;
 									}
-                                    String user = Main.userservermsg.replaceAll("%PLAYER%", all.getName());
-									p.sendMessage(Main.configpref + Main.userserverhiddenmsg);
+                                    String user = Main.userservermsg.replace("%PLAYER%", all.getName());
+									p.sendMessage(Main.configpref + user);
 									continue;
 								}
 							}
-							p.sendMessage(Main.configpref + "§8----------=" + Main.configpref + "§8=----------");
+							p.sendMessage(Main.configpref + "----------=" + Main.configpref + "=----------");
 						} else {
 							p.sendMessage(Main.configpref + Main.mustbeloggedinmsg);
 						}
