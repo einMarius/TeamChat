@@ -45,6 +45,7 @@ public class Main extends Plugin {
 	public static String serveralreadyshownmsg;
 	public static String autologinonmsg;
 	public static String autologinoffmsg;
+	public static String confmessage;
 
 	public static Boolean autologin;
 
@@ -80,6 +81,7 @@ public class Main extends Plugin {
 						"Die Berechtigung, um den Teamchat nutzen zu koennen lautet: tc.see");
 				config.set("Information.Log", "Der Log zeigt, wer den autologin aktiviert hat. True bedeutet aktiviert, false bedeutet deaktiviert!");
 				config.set("Einstellungen.Prefix", "&7[&cTeamChat&7] &7");
+				config.set("Einstellungen.Message", "&a%PLAYER% &7: %MESSAGE%");
 				config.set("Einstellungen.Keine Berechtigung", "Dazu hast du keine Berechtigung!");
 				config.set("Einstellungen.Server verstecken",
 						"Dein aktueller Server ist nun im TeamChat &aversteckt&7!");
@@ -94,13 +96,12 @@ public class Main extends Plugin {
 						"Nutze: <&alogin &7| &clogout &7| &elist &7| &bNachricht &7| &6autologin &7| &3remove&7/&3add list &7>");
 				config.set("Loggin.User-Loggin", "Du hast dich &aeingeloggt&7!");
 				config.set("Loggin.User-Loggout", "Du hast dich &causgeloggt&7!");
-				//config.set("Loggin.Anderer User-Loggin", "Der Spieler &a%PLAYER% &7hat sich eingeloggt!");
-				//config.set("Loggin.Anderer User-Loggout", "Der Spieler &a%PLAYER% &7hat sich ausgeloggt!");
+				config.set("Loggin.Anderer User-Loggin", "Der Spieler &a%PLAYER% &7hat sich eingeloggt!");
+				config.set("Loggin.Anderer User-Loggout", "Der Spieler &a%PLAYER% &7hat sich ausgeloggt!");
 				config.set("Loggin.Bereits eingeloggt", "Du bist &abereits &7eingeloggt!");
 				config.set("Loggin.Muss eingeloggt sein", "Du musst &aeingeloggt &7sein!");
-				//config.set("Loggin.Spieler-Server", "Der Spieler &a%PLAYER% &7ist &aeingeloggt &7auf: &a&l%SERVER%");
-				//config.set("Loggin.Spieler-Server versteckt",
-						//"Der Spieler &a%PLAYER% &7ist &aeingeloggt &7auf: &a&lHIDDEN");
+				config.set("Loggin.Spieler-Server", "Der Spieler &a%PLAYER% &7ist &aeingeloggt &7auf: &a&l%SERVER%");
+				config.set("Loggin.Spieler-Server versteckt", "Der Spieler &a%PLAYER% &7ist &aeingeloggt &7auf: &a&lHIDDEN");
 				config.set("Loggin.Autologin-On", "Du wirst nun &aautomatisch &7eingeloggt!");
 				config.set("Loggin.Autologin-Off", "Du wirst nun &cnicht &7mehr automatisch eingeloggt!");
 				ConfigurationProvider.getProvider(YamlConfiguration.class).save(config, file);
@@ -111,6 +112,9 @@ public class Main extends Plugin {
 			config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(file);
 			configpref = config.getString("Einstellungen.Prefix");
 			configpref = ChatColor.translateAlternateColorCodes('&', configpref);
+
+			confmessage = config.getString("Einstellungen.Message");
+			confmessage = ChatColor.translateAlternateColorCodes('&', confmessage);
 
 			autologinonmsg = config.getString("Loggin.Autologin-On");
 			autologinonmsg = ChatColor.translateAlternateColorCodes('&', autologinonmsg);

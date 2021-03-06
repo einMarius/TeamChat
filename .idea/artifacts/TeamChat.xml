@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TeamChat">
+    <output-path>$PROJECT_DIR$/../../../Server/1.8-Bungee/proxy/plugins</output-path>
+    <root id="archive" name="TeamChat.jar">
+      <element id="module-output" name="TeamChat" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+    </root>
+  </artifact>
+</component>

@@ -25,16 +25,14 @@ public class cmd_tc extends Command {
 
 				if (args.length > 0) {
 
-					// LOGIN DES SPIELERS
+					    // LOGIN DES SPIELERS
 
 					if (args[0].equalsIgnoreCase("login")) {
 						if (!Main.login.contains(p)) {
 							for (ProxiedPlayer all : BungeeCord.getInstance().getPlayers()) {
 								if (Main.login.contains(all)) {
-									// Main.otheruserlogginmsg = Main.otheruserlogginmsg.replace("%PLAYER%",
-									// sender.getName());
-									all.sendMessage(Main.configpref + "Der Spieler §a" + p.getName()
-											+ " §7hat sich eingeloggt!");
+									String player = Main.otheruserlogginmsg.replace("%PLAYER%", p.getName());
+									all.sendMessage(Main.configpref + player);
 								}
 								// Main.login.contains(all);
 							}
@@ -52,10 +50,8 @@ public class cmd_tc extends Command {
 							p.sendMessage(Main.configpref + Main.logoutmsg);
 							for (ProxiedPlayer all : BungeeCord.getInstance().getPlayers()) {
 								if (Main.login.contains(all)) {
-									// Main.otheruserlogoutmsg = Main.otheruserlogoutmsg.replace("%PLAYER%",
-									// sender.getName());
-									all.sendMessage(Main.configpref + "Der Spieler §a" + p.getName()
-											+ " §7hat sich ausgeloggt!");
+									String player = Main.otheruserlogoutmsg.replace("%PLAYER%", sender.getName());
+									all.sendMessage(Main.configpref + player);
 								}
 								// Main.login.contains(all);
 							}
@@ -79,18 +75,14 @@ public class cmd_tc extends Command {
 								if (Main.login.contains(all)) {
 									if (!Main.hidden.contains(all)) {
 
-										// Main.userservermsg = Main.userservermsg.replace("%PLAYER%", all.getName());
-										// Main.userservermsg = Main.userservermsg.replace("%SERVER%",
-										// all.getServer().getInfo().getName());
+										String user = Main.userservermsg.replace("%PLAYER%", all.getName());
+										String server = user.replace("%SERVER%", all.getServer().getInfo().getName());
 
-										p.sendMessage(Main.configpref + "Der Spieler §a" + all.getName()
-												+ " §7ist §aeingeloggt §7auf: §a§l"
-												+ all.getServer().getInfo().getName());
+										p.sendMessage(Main.configpref + server);
 										continue;
 									}
-									//Main.userserverhiddenmsg = Main.userserverhiddenmsg.replace("%PLAYER%",
-											//all.getName());
-									p.sendMessage(Main.configpref + "Der Spieler §a" + p.getName() + " §7ist §aeingeloggt §7auf: §a§lHIDDEN");
+                                    String user = Main.userservermsg.replaceAll("%PLAYER%", all.getName());
+									p.sendMessage(Main.configpref + Main.userserverhiddenmsg);
 									continue;
 								}
 							}
@@ -192,8 +184,12 @@ public class cmd_tc extends Command {
 								if (Main.login.contains(all)) {
 									String nachricht = "";
 									for (int i = 0; i < args.length; i++)
-										nachricht = String.valueOf(nachricht) + " " + args[i];
-									all.sendMessage(Main.configpref + "§a" + p.getDisplayName() + " §7➡" + nachricht);
+										nachricht = String.valueOf(String.valueOf(nachricht)) + "" + args[i];
+
+									String message = Main.confmessage.replace("%PLAYER%" , p.getName());
+									String messag2 = message.replace("%MESSAGE%", nachricht);
+
+									all.sendMessage(Main.configpref + messag2);
 									continue;
 								}
 								Main.login.contains(all);
