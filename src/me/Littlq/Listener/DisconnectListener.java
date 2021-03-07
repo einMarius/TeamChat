@@ -13,13 +13,12 @@ public class DisconnectListener implements Listener {
 	public void onDisconnect(PlayerDisconnectEvent e) {
 		ProxiedPlayer p = e.getPlayer();
 		
-		//Main.otheruserlogoutmsg = Main.otheruserlogoutmsg.replace("%PLAYER%", p.getName());
-		
 		if (Main.login.contains(p)) {
 			Main.login.remove(p);
 			for (ProxiedPlayer all : BungeeCord.getInstance().getPlayers()) {
 				if (Main.login.contains(all)) {
-					all.sendMessage(Main.configpref + "Der Spieler §a" + p.getName() + " §7hat sich ausgeloggt!");
+					String player = Main.otheruserlogoutmsg.replace("%PLAYER%", e.getPlayer().getName());
+					all.sendMessage(Main.configpref + player);
 				}
 			}
 		}
