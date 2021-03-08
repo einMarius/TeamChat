@@ -17,7 +17,6 @@ public class JoinListener implements Listener {
 		ProxiedPlayer p = e.getPlayer();
 
 		Main.autologin = Main.config.getBoolean("Log." + p.getName());
-		//Main.otheruserlogoutmsg = Main.otheruserlogginmsg.replace("%PLAYER%", p.getName());
 
 		if (Main.autologin == true) {
 
@@ -25,7 +24,8 @@ public class JoinListener implements Listener {
 
 			for (ProxiedPlayer all : Main.login) {
 
-				all.sendMessage(Main.configpref + "Der Spieler §a" + p.getName() + " §7hat sich eingeloggt!");
+				String otherloggin = Main.otheruserlogginmsg.replace("%PLAYER%", p.getName());
+				all.sendMessage(Main.configpref + otherloggin);
 
 			}
 
