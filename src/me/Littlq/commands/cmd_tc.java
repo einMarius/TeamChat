@@ -129,23 +129,7 @@ public class cmd_tc extends Command {
 
 						if (Main.login.contains(p)) {
 
-							if (Main.autologin == null) {
-
-								Main.config.set("Log." + p.getName(), true);
-
-								try {
-									ConfigurationProvider.getProvider(YamlConfiguration.class).save(Main.config,
-											Main.file);
-								} catch (IOException e) {
-									e.printStackTrace();
-									System.out.println("Es gab einen Fehler beim Speichern der config.yml");
-								}
-
-								p.sendMessage(Main.configpref + Main.autologinonmsg);
-
-							} else if (Main.autologin != null) {
-
-								if (Main.autologin == false) {
+								if (Main.autologin == false || Main.autologin == null) {
 
 									Main.config.set("Log." + p.getName(), true);
 
@@ -170,11 +154,9 @@ public class cmd_tc extends Command {
 										e.printStackTrace();
 										System.out.println("Es gab einen Fehler beim Speichern der config.yml");
 									}
-
 									p.sendMessage(Main.configpref + Main.autologinoffmsg);
-
 								}
-							}
+
 						} else
 							p.sendMessage(Main.configpref + Main.mustbeloggedinmsg);
 
